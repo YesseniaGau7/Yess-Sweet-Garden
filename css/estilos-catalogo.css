@@ -1,0 +1,990 @@
+
+/* ========================================
+   YESS SWEET GARDEN
+   Catálogo vintage juvenil por temporadas
+======================================== */
+
+:root {
+    --rosa: #e96b83;
+    --rosa-claro: #f8dce3;
+    --verde: #b7ce91;
+    --verde-oscuro: #405a35;
+    --crema: #fff8ef;
+    --cereza: #a52d38;
+    --texto: #342b29;
+    --borde: #eadbd0;
+    --blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--texto);
+    background: var(--crema);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+/* ANUNCIO SUPERIOR */
+
+.anuncio {
+    padding: 9px 15px;
+    background: var(--cereza);
+    color: var(--blanco);
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 6%;
+    border-bottom: 1px solid var(--borde);
+    background: var(--crema);
+}
+
+.logo {
+    color: var(--rosa);
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(21px, 2.5vw, 30px);
+    white-space: nowrap;
+}
+
+.encabezado nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.encabezado nav a {
+    font-size: 12px;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.encabezado nav a:hover,
+.encabezado nav .activo {
+    color: var(--rosa);
+}
+
+/* PORTADA DEL CATÁLOGO PRINCIPAL */
+
+.portada-catalogo {
+    padding: 65px 6% 50px;
+    text-align: center;
+    background: var(--rosa-claro);
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 7px 13px;
+    margin-bottom: 20px;
+    background: var(--verde);
+    color: var(--verde-oscuro);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.portada-catalogo h1,
+.portada-temporada h1 {
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(35px, 5vw, 58px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.portada-catalogo h1 span,
+.portada-temporada h1 span {
+    display: block;
+    color: var(--cereza);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.portada-catalogo > p,
+.portada-temporada > p {
+    max-width: 550px;
+    margin: 15px auto 0;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* TEXTOS INTRODUCTORIOS */
+
+.section-label {
+    margin-bottom: 10px;
+    color: var(--cereza);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.introduccion-categorias {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.introduccion-categorias h2 {
+    margin-bottom: 8px;
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 400;
+}
+
+.introduccion-categorias > p:last-child {
+    color: #75665e;
+    font-size: 13px;
+}
+
+/* CUATRO ESTACIONES */
+
+.categorias-temporada {
+    padding: 55px 6% 75px;
+}
+
+.rejilla-categorias {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.tarjeta-categoria {
+    min-height: 240px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    border: 1px solid rgba(80, 50, 40, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.tarjeta-categoria:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(60, 40, 35, 0.09);
+}
+
+.primavera {
+    background: #f8dce3;
+}
+
+.verano {
+    background: #f8edb9;
+}
+
+.otono {
+    background: #f0dfcb;
+}
+
+.invierno {
+    background: #e5ecd9;
+}
+
+.categoria-decoracion {
+    flex: 0 0 100px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% 50% 45% 45%;
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.categoria-decoracion span {
+    font-size: 65px;
+}
+
+.primavera .categoria-decoracion {
+    color: #a84f68;
+}
+
+.verano .categoria-decoracion {
+    color: #b17b20;
+}
+
+.otono .categoria-decoracion {
+    color: #9a6343;
+}
+
+.invierno .categoria-decoracion {
+    color: var(--verde-oscuro);
+}
+
+.categoria-texto {
+    min-width: 0;
+}
+
+.numero-temporada {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+.categoria-texto h2 {
+    margin: 5px 0 8px;
+    font-family: 'Bree Serif', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 400;
+}
+
+.categoria-texto p {
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.explorar {
+    display: inline-block;
+    margin-top: 14px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* PORTADA DE UNA ESTACIÓN */
+
+.portada-temporada {
+    padding: 50px 6%;
+    text-align: center;
+}
+
+.portada-temporada .volver {
+    display: table;
+    margin: 0 auto 25px;
+}
+
+.simbolo-portada {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+.portada-temporada .section-label {
+    margin-bottom: 12px;
+}
+
+.contador {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 7px 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* CONTENIDO DE LA ESTACIÓN */
+
+.contenido-temporada {
+    padding: 45px 6% 70px;
+}
+
+/* CATEGORÍAS: BLUSAS, SUÉTERES, FALDAS, ETC. */
+
+.rejilla-tipos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tarjeta-tipo {
+    min-height: 190px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.tarjeta-tipo:nth-child(4n + 1) {
+    background: #f8dce3;
+}
+
+.tarjeta-tipo:nth-child(4n + 2) {
+    background: #e5ecd9;
+}
+
+.tarjeta-tipo:nth-child(4n + 3) {
+    background: #f8edb9;
+}
+
+.tarjeta-tipo:nth-child(4n + 4) {
+    background: #f0dfcb;
+}
+
+.tarjeta-tipo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(75, 45, 40, 0.09);
+}
+
+.tipo-simbolo {
+    color: var(--cereza);
+    font-size: 32px;
+}
+
+.tarjeta-tipo h3 {
+    margin: 8px 0;
+    font-family: 'Bree Serif', serif;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+/* BOTONES PARA REGRESAR */
+
+.volver,
+.boton-volver {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid var(--borde);
+    border-radius: 25px;
+    background: var(--blanco);
+    font-size: 12px;
+    font-weight: 700;
+    transition: color 0.2s, background 0.2s;
+}
+
+.volver:hover,
+.boton-volver:hover {
+    color: var(--cereza);
+    background: #fff0f1;
+}
+
+/* CUADRÍCULA DE PRENDAS */
+
+.rejilla-prendas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.tarjeta-prenda {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(165, 45, 56, 0.13);
+    border-radius: 12px;
+    background: var(--blanco);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.tarjeta-prenda:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(75, 45, 40, 0.09);
+}
+
+/* FOTOGRAFÍAS */
+
+.foto-prenda {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--rosa-claro);
+}
+
+.foto-prenda > img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.tarjeta-prenda:hover .foto-prenda > img {
+    transform: scale(1.04);
+}
+
+.etiqueta-temporada {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: var(--crema);
+    color: var(--cereza);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.imagen-pendiente {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px;
+    text-align: center;
+    color: var(--cereza);
+    background: var(--rosa-claro);
+}
+
+.imagen-pendiente span {
+    font-size: 40px;
+}
+
+.imagen-pendiente p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+}
+
+.imagen-pendiente small {
+    margin-top: 6px;
+    font-size: 10px;
+}
+
+/* INFORMACIÓN DE LAS PRENDAS */
+
+.informacion-prenda {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.categoria {
+    color: var(--cereza);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.informacion-prenda h3 {
+    margin: 7px 0;
+    font-family: 'Bree Serif', serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.descripcion {
+    margin-bottom: 13px;
+    color: #75665e;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.detalles-prenda {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 12px;
+    border-top: 1px solid #f0e4dc;
+    color: #665851;
+    font-size: 11px;
+}
+
+.pie-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #f0e4dc;
+}
+
+.precio {
+    color: var(--cereza);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.precio small {
+    display: block;
+    color: #75665e;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.disponibilidad,
+.agotada {
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.disponibilidad {
+    background: #e5efd8;
+    color: var(--verde-oscuro);
+}
+
+.agotada {
+    background: #f8dce3;
+    color: var(--cereza);
+}
+
+/* MENSAJES */
+
+.mensaje-vacio {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 35px 20px;
+    border: 1px dashed #d9b9b2;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.65);
+    text-align: center;
+}
+
+.mensaje-vacio > span {
+    color: var(--rosa);
+    font-size: 35px;
+}
+
+.mensaje-vacio h1,
+.mensaje-vacio h2 {
+    margin: 8px 0;
+    font-family: 'Bree Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.mensaje-vacio p {
+    max-width: 450px;
+    margin: 0 auto 18px;
+    color: #75665e;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.mensaje-error {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+/* PIE DE PÁGINA */
+
+.pie-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 35px 6%;
+    background: var(--cereza);
+    color: var(--blanco);
+}
+
+.pie-pagina .logo {
+    color: var(--blanco);
+    font-size: 24px;
+}
+
+.pie-pagina p,
+.pie-pagina > a:not(.logo) {
+    font-size: 12px;
+}
+
+.pie-pagina small {
+    width: 100%;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+    .encabezado {
+        flex-direction: column;
+    }
+
+    .rejilla-prendas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tarjeta-categoria {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .categoria-decoracion {
+        flex-basis: 75px;
+        height: 100px;
+    }
+
+    .categoria-decoracion span {
+        font-size: 48px;
+    }
+}
+
+/* TABLET PEQUEÑA */
+
+@media (max-width: 760px) {
+    .rejilla-tipos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rejilla-prendas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .tarjeta-categoria {
+        min-height: 190px;
+    }
+
+    .contenido-temporada {
+        padding: 35px 5% 50px;
+    }
+
+    .informacion-prenda {
+        padding: 12px;
+    }
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+    .anuncio {
+        font-size: 9px;
+        letter-spacing: 0.6px;
+    }
+
+    .encabezado {
+        padding: 18px 4%;
+        gap: 15px;
+    }
+
+    .encabezado nav {
+        justify-content: center;
+        gap: 13px;
+    }
+
+    .encabezado nav a {
+        font-size: 11px;
+    }
+
+    .portada-catalogo,
+    .portada-temporada {
+        padding: 40px 5%;
+    }
+
+    .portada-catalogo h1,
+    .portada-temporada h1 {
+        font-size: 37px;
+    }
+
+    .categorias-temporada {
+        padding: 40px 5%;
+    }
+
+    .rejilla-categorias {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .tarjeta-categoria {
+        min-height: 175px;
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .categoria-decoracion {
+        flex-basis: 70px;
+        height: 90px;
+    }
+
+    .categoria-decoracion span {
+        font-size: 42px;
+    }
+
+    .categoria-texto h2 {
+        font-size: 25px;
+    }
+
+    .rejilla-tipos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .tarjeta-tipo {
+        min-height: 150px;
+        padding: 15px 8px;
+    }
+
+    .tarjeta-tipo h3 {
+        font-size: 20px;
+        overflow-wrap: anywhere;
+    }
+
+    .rejilla-prendas {
+        gap: 10px;
+    }
+
+    .informacion-prenda {
+        padding: 10px;
+    }
+
+    .informacion-prenda h3 {
+        font-size: 17px;
+    }
+
+    .descripcion {
+        font-size: 11px;
+    }
+
+    .precio {
+        font-size: 16px;
+    }
+
+    .pie-tarjeta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .etiqueta-temporada {
+        top: 7px;
+        left: 7px;
+        padding: 5px 7px;
+        font-size: 9px;
+    }
+
+    .pie-pagina {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Imágenes de fondo de las tarjetas de temporada */
+
+.tarjeta-categoria {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Capa de color para conservar la legibilidad */
+
+.tarjeta-categoria::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 248, 239, 0.72);
+    transition: background 0.3s ease;
+}
+
+/* Fotografía para cada estación */
+
+.tarjeta-categoria.primavera {
+    background-image: url("../imagenes/temporadas/spring.jpg");
+}
+
+.tarjeta-categoria.verano {
+    background-image: url("../imagenes/temporadas/summer.jpg");
+}
+
+.tarjeta-categoria.otono {
+    background-image: url("../imagenes/temporadas/autumn.jpg");
+}
+
+.tarjeta-categoria.invierno {
+    background-image: url("../imagenes/temporadas/winter.jpg");
+}
+
+/* Mantener el contenido por encima de la fotografía */
+
+.tarjeta-categoria .categoria-decoracion,
+.tarjeta-categoria .categoria-texto {
+    position: relative;
+    z-index: 1;
+}
+
+/* Efecto al pasar el cursor */
+
+.tarjeta-categoria:hover::before {
+    background: rgba(255, 248, 239, 0.58);
+}
+
+/* Imagen de fondo de la portada del catálogo */
+
+.portada-catalogo {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            rgba(248, 220, 227, 0.68),
+            rgba(255, 248, 239, 0.78)
+        ),
+        url("../imagenes/temporadas/wall.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 65px 6% 70px;
+    text-align: center;
+}
+
+/* Mantener el texto por encima de la imagen */
+
+.portada-catalogo > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Efecto opcional: ajustar el fondo en pantallas pequeñas */
+
+@media (max-width: 650px) {
+    .portada-catalogo {
+        background-position: center;
+        padding: 50px 5%;
+    }
+}
+
+
+/* =========================================
+   FONDOS FOTOGRÁFICOS DE LAS TEMPORADAS
+========================================= */
+
+/* Portada de cada colección */
+.portada-temporada {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Capa translúcida para conservar la legibilidad */
+.portada-temporada::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 248, 239, 0.62);
+    transition: background 0.3s ease;
+}
+
+/* Imágenes de fondo de las portadas.
+   Se conservan las rutas que ya tenías. */
+.portada-temporada.primavera {
+    background-image: url("../imagenes/temporadas/spring.jpg");
+}
+
+.portada-temporada.verano {
+    background-image: url("../imagenes/temporadas/summer.jpg");
+}
+
+.portada-temporada.otono {
+    background-image: url("../imagenes/temporadas/autumn.jpg");
+}
+
+.portada-temporada.invierno {
+    background-image: url("../imagenes/temporadas/winter.jpg");
+}
+
+/* Mantener los textos y botones por encima de la imagen */
+.portada-temporada > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Efecto al pasar el cursor sobre la portada */
+.portada-temporada:hover::before {
+    background: rgba(255, 248, 239, 0.48);
+}
+
+/* =========================================
+   TARJETAS DE CATEGORÍAS: BLUSAS, FALDAS, ETC.
+========================================= */
+
+/* Las categorías ya no utilizarán las imágenes
+   de fondo de las temporadas */
+.tarjeta-tipo {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-image: none;
+}
+
+/* Mantener los fondos pastel originales */
+.tarjeta-tipo:nth-child(4n + 1) {
+    background-color: #f8dce3;
+}
+
+.tarjeta-tipo:nth-child(4n + 2) {
+    background-color: #e5ecd9;
+}
+
+.tarjeta-tipo:nth-child(4n + 3) {
+    background-color: #f8edb9;
+}
+
+.tarjeta-tipo:nth-child(4n + 4) {
+    background-color: #f0dfcb;
+}
+
+/* No mostrar la capa de imagen en las categorías */
+.tarjeta-tipo::before {
+    content: none;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .portada-temporada {
+        background-position: center;
+    }
+
+    .tarjeta-tipo {
+        background-position: center;
+    }
+}

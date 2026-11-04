@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administración | Yess Sweet Garden</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="admin-header">
+
+        <div class="header-contenido">
+            <div class="marca">
+                <span class="marca-icono">✿</span>
+
+                <div>
+                    <h1>Yess Sweet Garden</h1>
+                    <p>Panel de administración</p>
+                </div>
+            </div>
+
+            <span class="estado-panel">
+                <span class="estado-punto"></span>
+                Gestión de inventario
+            </span>
+        </div>
+
+    </header>
+
+    <main class="admin-container">
+
+        <!-- INTRODUCCIÓN -->
+        <section class="bienvenida">
+
+            <div>
+                <p class="sobre-titulo">ADMINISTRACIÓN DE LA TIENDA</p>
+
+                <h2>Catálogo de prendas</h2>
+
+                <p class="bienvenida-descripcion">
+                    Registra y organiza las prendas de Yess Sweet Garden
+                    por categoría, temporada y disponibilidad.
+                </p>
+            </div>
+
+            <div class="decoracion-bienvenida" aria-hidden="true">
+                ♡
+            </div>
+
+        </section>
+
+        <!-- ACCESOS RÁPIDOS -->
+        <section class="accesos-rapidos">
+
+            <a href="listar.php" class="acceso-card acceso-rosa">
+
+                <span class="acceso-icono">▤</span>
+
+                <span class="acceso-texto">
+                    <strong>Prendas registradas</strong>
+                    <small>Consultar, editar o eliminar prendas</small>
+                </span>
+
+                <span class="acceso-flecha">→</span>
+
+            </a>
+
+            <a href="catalogo.php" class="acceso-card acceso-verde">
+
+                <span class="acceso-icono">✿</span>
+
+                <span class="acceso-texto">
+                    <strong>Ver catálogo</strong>
+                    <small>Explorar las colecciones por temporada</small>
+                </span>
+
+                <span class="acceso-flecha">→</span>
+
+            </a>
+
+        </section>
+
+        <!-- FORMULARIO -->
+        <section class="formulario-card">
+
+            <div class="formulario-encabezado">
+
+                <div class="formulario-icono">＋</div>
+
+                <div>
+                    <h2>Registrar una prenda</h2>
+
+                    <p>
+                        Completa la información para agregar una nueva pieza
+                        al inventario.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="separador"></div>
+
+            <form action="crear.php" method="POST">
+
+                <div class="form-grid">
+
+                    <!-- NOMBRE -->
+                    <div class="campo campo-completo">
+                        <label for="nombre">Nombre de la prenda *</label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Ej. Blusa floral"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <!-- DESCRIPCIÓN -->
+                    <div class="campo campo-completo">
+                        <label for="descripcion">Descripción</label>
+
+                        <textarea
+                            id="descripcion"
+                            name="descripcion"
+                            rows="4"
+                            placeholder="Describe el estilo, material o detalles de la prenda..."
+                        ></textarea>
+                    </div>
+
+                    <!-- CATEGORÍA -->
+                    <div class="campo">
+                        <label for="categoria">Categoría *</label>
+
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Blusa">Blusa</option>
+                            <option value="Pantalón">Pantalón</option>
+                            <option value="Vestido">Vestido</option>
+                            <option value="Falda">Falda</option>
+                            <option value="Suéter">Suéter</option>
+                            <option value="Abrigo">Abrigo</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- TEMPORADA -->
+                    <div class="campo">
+                        <label for="temporada">Temporada *</label>
+
+                        <select id="temporada" name="temporada" required>
+                            <option value="">Selecciona una temporada</option>
+                            <option value="Primavera">Primavera</option>
+                            <option value="Verano">Verano</option>
+                            <option value="Otoño">Otoño</option>
+                            <option value="Invierno">Invierno</option>
+                        </select>
+                    </div>
+
+                    <!-- PRECIO -->
+                    <div class="campo">
+                        <label for="precio">Precio (MXN) *</label>
+
+                        <div class="entrada-prefijo">
+                            <span>$</span>
+
+                            <input
+                                type="number"
+                                id="precio"
+                                name="precio"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="0.00"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- TALLA -->
+                    <div class="campo">
+                        <label for="talla">Talla</label>
+
+                        <select id="talla" name="talla">
+                            <option value="">Selecciona una talla</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="Unitalla">Unitalla</option>
+                        </select>
+                    </div>
+
+                    <!-- COLOR -->
+                    <div class="campo">
+                        <label for="color">Color</label>
+
+                        <input
+                            type="text"
+                            id="color"
+                            name="color"
+                            placeholder="Ej. Rosa pastel"
+                            maxlength="50"
+                        >
+                    </div>
+
+                    <!-- STOCK -->
+                    <div class="campo">
+                        <label for="stock">Cantidad disponible *</label>
+
+                        <input
+                            type="number"
+                            id="stock"
+                            name="stock"
+                            min="0"
+                            step="1"
+                            value="0"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <!-- BOTONES -->
+                <div class="formulario-acciones">
+
+                    <p class="nota-campos">
+                        <span>*</span> Campos obligatorios
+                    </p>
+
+                    <button type="reset" class="btn-limpiar">
+                        Limpiar formulario
+                    </button>
+
+                    <button type="submit" class="btn-registrar">
+                        <span>＋</span>
+                        Registrar prenda
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- NOTA INFORMATIVA -->
+        <aside class="nota-inventario">
+            <span class="nota-icono">♡</span>
+
+            <p>
+                <strong>Un inventario bien organizado.</strong>
+                Recuerda revisar la categoría, la temporada y la cantidad
+                disponible antes de registrar cada prenda.
+            </p>
+        </aside>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="admin-footer">
+        <span>✿ Yess Sweet Garden</span>
+        <span>Panel interno de administración · 2026</span>
+    </footer>
+
+</body>
+</html>

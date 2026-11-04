@@ -1,0 +1,586 @@
+
+/* ========================================
+   YESS SWEET GARDEN
+   Panel de administración
+======================================== */
+
+:root {
+    --crema: #fff8ef;
+    --blanco: #ffffff;
+    --rosa: #f7dce4;
+    --rosa-claro: #fff0f3;
+    --rosa-fuerte: #e96b83;
+    --cereza: #a52d38;
+    --cereza-oscuro: #84202d;
+    --verde: #e5ecd9;
+    --verde-oscuro: #456044;
+    --texto: #382b29;
+    --texto-suave: #796963;
+    --borde: #eadbd2;
+    --sombra: 0 8px 28px rgba(65, 39, 35, 0.06);
+}
+
+/* REINICIO */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--crema);
+    color: var(--texto);
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--rosa-fuerte);
+    outline-offset: 3px;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.admin-header {
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+}
+
+.header-contenido {
+    width: min(1120px, 92%);
+    min-height: 100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.marca-icono {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--rosa);
+    color: var(--cereza);
+    font-size: 29px;
+}
+
+.marca h1 {
+    margin: 0;
+    color: var(--cereza);
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.marca p {
+    margin: 4px 0 0;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.estado-panel {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 13px;
+    border: 1px solid var(--borde);
+    border-radius: 30px;
+    background: var(--crema);
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.estado-punto {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #709765;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+.admin-container {
+    width: min(1000px, 92%);
+    margin: 42px auto 55px;
+}
+
+/* ========================================
+   BIENVENIDA
+======================================== */
+
+.bienvenida {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.sobre-titulo {
+    margin: 0 0 8px;
+    color: var(--cereza);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.bienvenida h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.bienvenida-descripcion {
+    max-width: 650px;
+    margin: 10px 0 0;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.decoracion-bienvenida {
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--rosa);
+    color: var(--cereza);
+    font-family: Georgia, serif;
+    font-size: 48px;
+}
+
+/* ========================================
+   ACCESOS RÁPIDOS
+======================================== */
+
+.accesos-rapidos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.acceso-card {
+    min-height: 112px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.acceso-rosa {
+    background: var(--rosa-claro);
+}
+
+.acceso-verde {
+    background: var(--verde);
+}
+
+.acceso-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+}
+
+.acceso-icono {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--cereza);
+    font-size: 25px;
+}
+
+.acceso-texto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.acceso-texto strong {
+    font-size: 14px;
+}
+
+.acceso-texto small {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.acceso-flecha {
+    color: var(--cereza);
+    font-size: 22px;
+}
+
+/* ========================================
+   TARJETA DEL FORMULARIO
+======================================== */
+
+.formulario-card {
+    padding: 32px;
+    border: 1px solid var(--borde);
+    border-radius: 17px;
+    background: var(--blanco);
+    box-shadow: var(--sombra);
+}
+
+.formulario-encabezado {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.formulario-icono {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--rosa);
+    color: var(--cereza);
+    font-size: 27px;
+}
+
+.formulario-encabezado h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    line-height: 1.3;
+}
+
+.formulario-encabezado p {
+    margin: 5px 0 0;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.separador {
+    height: 1px;
+    margin: 25px 0;
+    background: var(--borde);
+}
+
+/* ========================================
+   CAMPOS DEL FORMULARIO
+======================================== */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 21px 24px;
+}
+
+.campo {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.campo label {
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 13px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--crema);
+    color: var(--texto);
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #a99b94;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: var(--rosa-fuerte);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(233, 107, 131, 0.12);
+}
+
+/* Precio con símbolo de moneda */
+
+.entrada-prefijo {
+    position: relative;
+}
+
+.entrada-prefijo > span {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    color: var(--texto-suave);
+    transform: translateY(-50%);
+}
+
+.entrada-prefijo input {
+    padding-left: 30px;
+}
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.formulario-acciones {
+    margin-top: 30px;
+    padding-top: 23px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid var(--borde);
+}
+
+.nota-campos {
+    margin: 0 auto 0 0;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.nota-campos span {
+    color: var(--cereza);
+    font-weight: 700;
+}
+
+.btn-limpiar,
+.btn-registrar {
+    min-height: 44px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-limpiar {
+    border: 1px solid var(--borde);
+    background: var(--blanco);
+    color: var(--texto);
+}
+
+.btn-limpiar:hover {
+    background: var(--crema);
+}
+
+.btn-registrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: 1px solid var(--cereza);
+    background: var(--cereza);
+    color: var(--blanco);
+}
+
+.btn-registrar span {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.btn-registrar:hover {
+    background: var(--cereza-oscuro);
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   NOTA INFORMATIVA
+======================================== */
+
+.nota-inventario {
+    margin-top: 22px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    border: 1px solid #d8e3c9;
+    border-radius: 12px;
+    background: var(--verde);
+}
+
+.nota-icono {
+    color: var(--verde-oscuro);
+    font-size: 23px;
+}
+
+.nota-inventario p {
+    margin: 0;
+    color: var(--verde-oscuro);
+    font-size: 12px;
+}
+
+.nota-inventario strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 13px;
+}
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+.admin-footer {
+    min-height: 75px;
+    padding: 20px 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    border-top: 1px solid var(--borde);
+    background: var(--blanco);
+    color: var(--texto-suave);
+    font-size: 11px;
+}
+
+.admin-footer span:first-child {
+    color: var(--cereza);
+    font-weight: 700;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 650px) {
+    .header-contenido {
+        padding: 18px 0;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .marca h1 {
+        font-size: 23px;
+    }
+
+    .estado-panel {
+        font-size: 11px;
+    }
+
+    .admin-container {
+        margin: 28px auto 40px;
+    }
+
+    .bienvenida {
+        align-items: flex-start;
+    }
+
+    .bienvenida h2 {
+        font-size: 30px;
+    }
+
+    .decoracion-bienvenida {
+        width: 55px;
+        height: 55px;
+        font-size: 33px;
+    }
+
+    .accesos-rapidos {
+        grid-template-columns: 1fr;
+    }
+
+    .formulario-card {
+        padding: 23px 18px;
+    }
+
+    .formulario-encabezado {
+        align-items: flex-start;
+    }
+
+    .formulario-encabezado h2 {
+        font-size: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .formulario-acciones {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .nota-campos {
+        margin: 0 0 8px;
+    }
+
+    .btn-limpiar,
+    .btn-registrar {
+        width: 100%;
+    }
+
+    .admin-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}

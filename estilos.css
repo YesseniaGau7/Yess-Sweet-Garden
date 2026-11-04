@@ -1,0 +1,117 @@
+
+/* Configuración general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff5f8;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Encabezado */
+header {
+    background: linear-gradient(135deg, #f8c8dc, #fce4ec);
+    color: #713f55;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 3px solid #f3b4cd;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 17px;
+}
+
+/* Contenido principal */
+main {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+main h2 {
+    color: #a64d79;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Contador de prendas */
+main > p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Catálogo en tarjetas */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjeta de cada prenda */
+.prenda {
+    background-color: #ffffff;
+    border: 1px solid #f3d6e2;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(166, 77, 121, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prenda:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(166, 77, 121, 0.15);
+}
+
+.prenda h3 {
+    color: #a64d79;
+    font-size: 21px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f5dce7;
+    padding-bottom: 10px;
+}
+
+.prenda p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.prenda strong {
+    color: #6b4255;
+}
+
+/* Precio destacado */
+.prenda p strong:first-child {
+    font-weight: 700;
+}
+
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    main {
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .catalogo {
+        grid-template-columns: 1fr;
+    }
+}
