@@ -45,7 +45,7 @@ foreach ($prendas as $prenda) {
 
     <title>Inventario de prendas | Yess Sweet Garden</title>
 
- <link rel="stylesheet" href="../css/listar.css">
+ <link rel="stylesheet" href="css/listar.css">
 </head>
 
 <body>

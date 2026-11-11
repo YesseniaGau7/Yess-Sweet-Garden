@@ -107,7 +107,7 @@
 
             <div class="separador"></div>
 
-            <form action="crear.php" method="POST">
+            <form action="crear.php" method="POST" enctype="multipart/form-data">
 
                 <div class="form-grid">
 
@@ -228,6 +228,23 @@
                         >
                     </div>
 
+                    <!-- FOTOGRAFÍA -->
+                    <div class="campo campo-completo">
+                        <label for="imagen">Fotografía de la prenda</label>
+
+                        <input
+                            type="file"
+                            id="imagen"
+                            name="imagen"
+                            accept=".jpg,.jpeg,.png,.webp"
+                        >
+
+                        <small>
+                            Formatos permitidos: JPG, PNG y WEBP.
+                            Máximo 5 MB.
+                        </small>
+                    </div>
+
                 </div>
 
                 <!-- BOTONES -->
@@ -242,7 +259,7 @@
                     </button>
 
                     <button type="submit" class="btn-registrar">
-                        <span>＋</span>
+                        <span>+</span>
                         Registrar prenda
                     </button>
 
