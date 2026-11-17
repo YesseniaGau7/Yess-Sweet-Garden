@@ -33,6 +33,9 @@ body {
     background: var(--cream);
     color: var(--ink);
     line-height: 1.6;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 a {
@@ -187,59 +190,6 @@ img {
     margin-top: 22px;
 }
 
-/* COLLAGE */
-
-.collage {
-    min-height: 460px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 0.8fr;
-    grid-template-rows: 190px 190px;
-    gap: 12px;
-    position: relative;
-}
-
-.photo {
-    position: relative;
-    overflow: hidden;
-    background: var(--pink-light);
-    border: 3px solid var(--white);
-    box-shadow: 0 4px 12px rgba(53, 35, 30, 0.09);
-}
-
-.photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.photo:hover img {
-    transform: scale(1.06);
-}
-
-.photo-one {
-    grid-column: 1 / 3;
-    grid-row: 1;
-    transform: rotate(-2deg);
-}
-
-.photo-two {
-    grid-column: 3;
-    grid-row: 1;
-    transform: rotate(2deg);
-}
-
-.photo-three {
-    grid-column: 1;
-    grid-row: 2;
-    transform: rotate(2deg);
-}
-
-.photo-four {
-    grid-column: 2 / 4;
-    grid-row: 2;
-    transform: rotate(-1deg);
-}
 
 /* ETIQUETAS DECORATIVAS */
 
@@ -618,5 +568,459 @@ img {
     *::before,
     *::after {
         transition-duration: 0.01ms !important;
+    }
+}
+/* =====================================
+   CARRUSEL DE IMÁGENES
+===================================== */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 460px;
+    margin: 0;
+    overflow: hidden;
+    border: 4px solid var(--white);
+    border-radius: 3px;
+    box-shadow: 0 8px 20px rgba(53, 35, 30, 0.10);
+    background: var(--pink-light);
+}
+
+/* Cada diapositiva */
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+/* Imágenes */
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Botones anterior y siguiente */
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--cream);
+    color: var(--cherry);
+
+    font-size: 25px;
+    font-weight: bold;
+
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.carousel-prev {
+    left: 15px;
+}
+
+.carousel-next {
+    right: 15px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background: var(--pink);
+    color: var(--white);
+}
+
+/* Indicadores inferiores */
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+
+    display: flex;
+    gap: 9px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+
+    border: 1px solid var(--white);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-dot.active {
+    background: var(--pink);
+    transform: scale(1.25);
+}
+
+/* Adaptación para pantallas pequeñas */
+
+@media (max-width: 900px) {
+    .carousel {
+        max-width: 100%;
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel {
+        height: 280px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
+    }
+
+    .carousel-prev {
+        left: 8px;
+    }
+
+    .carousel-next {
+        right: 8px;
+    }
+
+    .carousel-dots {
+        bottom: 10px;
+    }
+}/* DISTRIBUCIÓN ORIGINAL DE LA PORTADA */
+.hero {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: center;
+    gap: 45px;
+    padding: 50px 6%;
+    overflow: hidden;
+}
+
+/* TEXTO A LA IZQUIERDA */
+.hero-copy {
+    grid-column: 1;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+}
+
+/* CARRUSEL SOLAMENTE A LA DERECHA */
+.hero > .carousel {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 460px;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* IMÁGENES DENTRO DEL CARRUSEL */
+.hero > .carousel .carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero > .carousel .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TABLET Y CELULAR */
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .hero-copy {
+        grid-column: 1;
+    }
+
+    .hero > .carousel {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero > .carousel {
+        height: 280px;
+    }
+}
+/* CARRUSEL DENTRO DE LA PORTADA */
+
+.hero-carousel {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    max-width: 100%;
+    height: 460px;
+    min-width: 0;
+    overflow: hidden;
+    border: 5px solid var(--white);
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(53, 35, 30, 0.12);
+}
+
+/* IMÁGENES */
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* FLECHAS */
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--cherry);
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.carousel-prev {
+    left: 15px;
+}
+
+.carousel-next {
+    right: 15px;
+}
+
+/* INDICADORES */
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 9px;
+    z-index: 3;
+}
+
+.carousel-dot {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--pink);
+}
+@media (max-width: 768px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 35px 6%;
+        overflow: hidden;
+    }
+
+    .hero-copy {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+    }
+
+    .hero-carousel {
+        display: block !important;
+        visibility: visible;
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        max-width: 100%;
+        height: 420px;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .carousel-slide {
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.nav-login {
+    padding: 9px 17px;
+    border: 1px solid #b52d42;
+    border-radius: 25px;
+    color: #b52d42;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.nav-login:hover {
+    background: #b52d42;
+    color: #fff;
+}
+
+/* FOOTER YESS SWEET GARDEN */
+
+.footer {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 0.7fr;
+    gap: 60px;
+    align-items: start;
+    padding: 45px 6% 25px;
+    background: #a72d3c;
+    color: #fff;
+}
+
+.footer-brand,
+.footer-contact,
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-brand .logo {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer-contact h3,
+.footer-links h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.footer-contact a,
+.footer-links a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 9px;
+    transition: .2s ease;
+}
+
+.footer-contact a:hover,
+.footer-links a:hover {
+    color: #f8d5d9;
+    text-decoration: underline;
+}
+
+.footer .copyright {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(255,255,255,.3);
+    text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 7% 20px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
     }
 }

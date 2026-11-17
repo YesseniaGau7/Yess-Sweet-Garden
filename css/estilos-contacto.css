@@ -1,0 +1,477 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: #fff8f0;
+    color: #49352f;
+}
+
+.encabezado-contacto {
+    background: #fff8f0;
+    padding: 25px 6%;
+    border-bottom: 1px solid #f0ded5;
+}
+
+.contenedor-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo-contacto {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: #ef7185;
+    text-decoration: none;
+}
+
+.encabezado-contacto nav {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.encabezado-contacto nav a {
+    color: #49352f;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.encabezado-contacto nav a:hover {
+    color: #ae2d40;
+}
+
+.pagina-ubicacion {
+    max-width: 1150px;
+    margin: 65px auto;
+    padding: 0 25px;
+}
+
+.introduccion-ubicacion {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.subtitulo-contacto {
+    color: #ae2d40;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.introduccion-ubicacion h1 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.introduccion-ubicacion p {
+    color: #8a716b;
+    font-size: 16px;
+}
+
+.contenedor-mapa {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 25px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #f0ded5;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(100,60,50,.06);
+}
+
+.informacion-ubicacion {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icono-ubicacion {
+    color: #ae2d40;
+    font-size: 40px;
+}
+
+.informacion-ubicacion h2 {
+    font-family: 'Playfair Display', serif;
+    color: #50342f;
+    font-size: 25px;
+}
+
+.informacion-ubicacion p {
+    color: #80645d;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.btn-ubicacion {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 18px;
+    padding: 13px 25px;
+    border-radius: 25px;
+    background: #ae2d40;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.btn-ubicacion:hover {
+    background: #902235;
+    transform: translateY(-2px);
+}
+
+.mapa-google {
+    overflow: hidden;
+    border-radius: 13px;
+}
+
+.mapa-google iframe {
+    display: block;
+    width: 100%;
+}
+
+.footer-contacto {
+    padding: 35px 20px;
+    background: #a72d3c;
+    color: white;
+    text-align: center;
+}
+
+.footer-contacto h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-contacto p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (max-width: 750px) {
+    .contenedor-encabezado {
+        flex-direction: column;
+    }
+
+    .contenedor-mapa {
+        grid-template-columns: 1fr;
+    }
+
+    .introduccion-ubicacion h1 {
+        font-size: 29px;
+    }
+
+    .pagina-ubicacion {
+        margin: 40px auto;
+    }
+}
+
+/* ========================================
+   PÁGINA DE CONTACTO
+======================================== */
+
+.pagina-contacto {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 65px 25px;
+}
+
+/* Presentación */
+
+.introduccion-contacto {
+    max-width: 750px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.introduccion-contacto h1 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    margin: 15px 0;
+}
+
+.introduccion-contacto p {
+    color: #80645d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* Tarjeta de correo */
+
+.tarjeta-correo {
+    max-width: 650px;
+    margin: 0 auto 65px;
+    padding: 35px;
+    text-align: center;
+    background: white;
+    border: 1px solid #f0ded5;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(100,60,50,.05);
+}
+
+.icono-contacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #f9e3e7;
+    color: #ae2d40;
+    font-size: 30px;
+}
+
+.tarjeta-correo h2,
+.seccion-redes h2,
+.contacto-ubicacion h2 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+}
+
+.tarjeta-correo p,
+.seccion-redes > p,
+.contacto-ubicacion p {
+    color: #80645d;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 13px 0 20px;
+}
+
+/* Botones */
+
+.btn-contacto {
+    display: inline-block;
+    padding: 13px 27px;
+    border-radius: 25px;
+    background: #ae2d40;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .25s ease;
+}
+
+.btn-contacto:hover {
+    background: #902235;
+    transform: translateY(-2px);
+}
+
+/* Redes sociales */
+
+.seccion-redes {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.seccion-redes h2 {
+    margin: 13px 0;
+}
+
+.tarjetas-redes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.tarjeta-red {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 22px;
+    background: white;
+    border: 1px solid #f0ded5;
+    border-radius: 17px;
+    text-decoration: none;
+    transition: .25s ease;
+}
+
+.tarjeta-red:hover {
+    transform: translateY(-6px);
+    border-color: #d9a2a7;
+    box-shadow: 0 10px 25px rgba(100,60,50,.08);
+}
+
+.icono-red {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 17px;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.instagram {
+    background: #f9e3e7;
+    color: #ae2d40;
+}
+
+.youtube {
+    background: #fbe5e5;
+    color: #c52d35;
+}
+
+.facebook {
+    background: #e8edf8;
+    color: #4267a9;
+}
+
+.tarjeta-red h3 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.tarjeta-red p {
+    color: #80645d;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 65px;
+}
+
+.tarjeta-red span {
+    color: #ae2d40;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+
+/* Ubicación */
+
+.contacto-ubicacion {
+    padding: 40px 20px;
+    text-align: center;
+    background: #f9e9e5;
+    border-radius: 18px;
+}
+
+.contacto-ubicacion h2 {
+    font-size: 26px;
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 750px) {
+
+    .tarjetas-redes {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .introduccion-contacto h1 {
+        font-size: 34px;
+    }
+
+    .tarjeta-red p {
+        min-height: auto;
+    }
+
+    .pagina-contacto {
+        padding: 45px 18px;
+    }
+}
+
+/* ========================================
+   FOOTER - YESS SWEET GARDEN
+======================================== */
+
+.footer {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 0.7fr;
+    gap: 60px;
+    align-items: start;
+    padding: 45px 6% 25px;
+    background: #a72d3c;
+    color: #fff;
+}
+
+.footer-brand,
+.footer-contact,
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-brand .logo {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.footer p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer-contact h3,
+.footer-links h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.footer-contact a,
+.footer-links a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 9px;
+    transition: .2s ease;
+}
+
+.footer-contact a:hover,
+.footer-links a:hover {
+    color: #f8d5d9;
+    text-decoration: underline;
+}
+
+.footer .copyright {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(255,255,255,.3);
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 7% 20px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}

@@ -584,3 +584,58 @@ textarea:focus-visible {
         text-align: center;
     }
 }
+
+/* SELECCIÓN DE TALLAS Y EXISTENCIAS */
+
+.ayuda-tallas {
+    color: #806e68;
+    font-size: 14px;
+    margin: 8px 0 15px;
+}
+
+.tallas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.talla-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #ead8ce;
+    border-radius: 12px;
+    background: #fffaf5;
+}
+
+.talla-item label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.talla-item input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #b83d54;
+}
+
+.talla-item input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.talla-item input[type="number"]:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+    .tallas-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

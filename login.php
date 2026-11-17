@@ -4,7 +4,7 @@ session_start();
 
 // Si ya inició sesión, enviarlo al panel
 if (isset($_SESSION['administrador'])) {
-    header('Location: index.php');
+    header('Location: listar.php');
     exit;
 }
 

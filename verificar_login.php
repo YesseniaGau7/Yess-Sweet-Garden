@@ -45,7 +45,7 @@ try {
         $_SESSION['administrador'] = $administrador['usuario'];
         $_SESSION['administrador_id'] = $administrador['id'];
 
-        header('Location: index.php');
+        header('Location: listar.php');
         exit;
     }
 

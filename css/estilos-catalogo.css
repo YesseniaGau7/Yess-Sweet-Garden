@@ -988,3 +988,167 @@ img {
         background-position: center;
     }
 }
+
+/* =====================================
+   SELECTOR DE TALLAS - YESS SWEET GARDEN
+===================================== */
+
+.selector-talla-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    width: 100%;
+    margin: 12px 0;
+}
+
+.selector-talla-contenedor label {
+    display: block;
+    width: 100%;
+    color: #765b54;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Menú desplegable */
+.selector-talla {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 42px 12px 15px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #633e43;
+
+    background-color: #fff8f1;
+    border: 1px solid #ead8ce;
+    border-radius: 12px;
+
+    cursor: pointer;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ad3041' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+
+    transition: all 0.25s ease;
+}
+
+/* Cuando el usuario pasa el cursor */
+.selector-talla:hover {
+    border-color: #c77b83;
+    background-color: #fff2ed;
+}
+
+/* Cuando selecciona el menú */
+.selector-talla:focus {
+    border-color: #b52d42;
+    box-shadow: 0 0 0 3px rgba(181, 45, 66, 0.10);
+}
+
+/* Opciones del menú */
+.selector-talla option {
+    padding: 12px;
+    color: #633e43;
+    background-color: #fff8f1;
+    font-size: 14px;
+}
+
+/* Cuando no hay tallas */
+.sin-tallas {
+    display: block;
+    color: #b52d42;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =====================================
+   BOTONES DE FAVORITOS Y CARRITO
+===================================== */
+
+.foto-prenda {
+    position: relative;
+}
+
+.acciones-prenda {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.acciones-prenda button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #ead8ce;
+    border-radius: 50%;
+
+    background: rgba(255, 250, 245, 0.96);
+    color: #ae2d40;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(70, 40, 35, 0.10);
+}
+
+.acciones-prenda button svg {
+    width: 19px;
+    height: 19px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.acciones-prenda button:hover {
+    background: #ae2d40;
+    color: #fff;
+    border-color: #ae2d40;
+    transform: scale(1.08);
+}
+
+/* Corazón seleccionado */
+.btn-favorito.activo {
+    background: #ae2d40;
+    color: #fff;
+    border-color: #ae2d40;
+}
+
+.btn-favorito.activo svg {
+    fill: currentColor;
+}
+
+/* Botón de carrito */
+.btn-carrito {
+    color: #705047 !important;
+}
+
+.btn-carrito:hover {
+    background: #71845b !important;
+    border-color: #71845b !important;
+    color: #fff !important;
+}
+
+.acciones-prenda button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}

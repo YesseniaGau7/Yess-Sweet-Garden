@@ -1,9 +1,9 @@
-
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$password = "";
-$basedatos = "yess_sweet_garden";
+
+$servidor = "sql108.infinityfree.com";
+$usuario = "if0_43451823";
+$password = "YessSweet123";
+$basedatos = "if0_43451823_ysg_tienda";
 
 try {
     $conexion = new PDO(
@@ -20,4 +20,5 @@ try {
 } catch (PDOException $e) {
     die("Error de conexión con la base de datos.");
 }
+
 ?>

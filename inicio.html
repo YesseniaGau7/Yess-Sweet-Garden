@@ -29,6 +29,11 @@
     <a href="#colecciones">Colecciones</a>
     <a href="#nosotros">Nosotros</a>
     <a href="#contacto">Contacto</a>
+    <a href="login_usuario.php"
+   class="nav-login"
+   id="acceso-usuario">
+    Login / Signup
+</a>
 </nav>
     </header>
 
@@ -59,48 +64,45 @@
                 <span class="handwritten">Made with love ♡</span>
             </div>
 
-            <!-- COLLAGE DE FOTOGRAFÍAS -->
+           
+<!-- CARRUSEL DE FOTOGRAFÍAS -->
 
-            <div class="collage" aria-label="Inspiración de moda">
+<div class="hero-carousel" aria-label="Inspiración de moda">
 
-                <div class="photo photo-one">
-                    <img
-                        src="imagenes/inspo.jpg"
-                        alt="Inspiración de ropa y prendas"
-                    >
-                </div>
+    <div class="carousel-slide active">
+        <img src="imagenes/inspo.jpg" alt="Inspiración de ropa y prendas">
+    </div>
 
-                <div class="photo photo-two">
-                    <img
-                        src="imagenes/corbtas.jpg"
-                        alt="Accesorios coloridos"
-                    >
-                </div>
+    <div class="carousel-slide">
+        <img src="imagenes/corbtas.jpg" alt="Accesorios coloridos">
+    </div>
 
-                <div class="photo photo-three">
-                    <img
-                        src="imagenes/fashion.jpg"
-                        alt="Detalles de moda"
-                    >
-                </div>
+    <div class="carousel-slide">
+        <img src="imagenes/fashion.jpg" alt="Detalles de moda">
+    </div>
 
-                <div class="photo photo-four">
-                    <img
-                        src="imagenes/colects.jpg"
-                        alt="Colección de prendas"
-                    >
-                </div>
+    <div class="carousel-slide">
+        <img src="imagenes/colects.jpg" alt="Colección de prendas">
+    </div>
 
-                <div class="sticker sticker-cherry">
-                    SWEET<br>LIKE<br>CHERRY ♥
-                </div>
+    <div class="carousel-slide">
+        <img src="imagenes/mood.jpg" alt="Inspiración de moda">
+    </div>
 
-                <div class="sticker sticker-green">
-                    JUST<br>BE YOU ✿
-                </div>
+    <button class="carousel-arrow carousel-prev" type="button" aria-label="Imagen anterior">‹</button>
+    <button class="carousel-arrow carousel-next" type="button" aria-label="Imagen siguiente">›</button>
 
-            </div>
+    <div class="carousel-indicators">
+        <button class="carousel-dot active" aria-label="Ir a imagen 1"></button>
+        <button class="carousel-dot" aria-label="Ir a imagen 2"></button>
+        <button class="carousel-dot" aria-label="Ir a imagen 3"></button>
+        <button class="carousel-dot" aria-label="Ir a imagen 4"></button>
+        <button class="carousel-dot" aria-label="Ir a imagen 5"></button>
+    </div>
 
+</div>
+
+            
         </section>
 
         <!-- FRANJA DECORATIVA -->
@@ -217,30 +219,132 @@
 
     </main>
 
-    <!-- PIE DE PÁGINA -->
+   
+<!-- PIE DE PÁGINA -->
 
-    <footer class="footer" id="contacto">
+<footer class="footer" id="contacto">
 
-        <div class="footer-brand">
-            <a href="inicio.html" class="logo">Yess Sweet Garden</a>
-            <p>Un pequeño jardín para expresar tu estilo. ♡</p>
-        </div>
+    <div class="footer-brand">
+        <a href="inicio.html" class="logo">Yess Sweet Garden</a>
+        <p>Un pequeño jardín para expresar tu estilo. ♡</p>
+    </div>
 
-        <div class="footer-contact">
-            <p><strong>Contacto</strong></p>
-            <p>Agrega aquí tu correo de contacto.</p>
-            <p>Ciudad Juárez, Chihuahua</p>
-        </div>
+    <div class="footer-contact">
+        <h3>Contacto</h3>
+        <p>Agrega aquí tu correo de contacto.</p>
+        <p>Ciudad Juárez, Chihuahua</p>
+        <a href="ubicacion.php">Conoce nuestra ubicación</a>
+    </div>
 
-        <div class="footer-links">
-            <a href="catalogo.php">Catálogo</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#colecciones">Colecciones</a>
-        </div>
+    <div class="footer-links">
+        <h3>Explora</h3>
+        <a href="catalogo.php">Catálogo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#colecciones">Colecciones</a>
+        <a href="ubicacion.php">Ubicación</a>
+              <a href="contacto.php">Contacto</a>
+    </div>
 
-        <p class="copyright">© 2026 Yess Sweet Garden</p>
+    <p class="copyright">© 2026 Yess Sweet Garden</p>
+
+</footer>
 
     </footer>
+
+    <!-- JAVASCRIPT DEL CARRUSEL -->
+    <script>
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const anterior = document.querySelector('.carousel-prev');
+        const siguiente = document.querySelector('.carousel-next');
+
+        let indiceActual = 0;
+
+        function mostrarImagen(indice) {
+            slides[indiceActual].classList.remove('active');
+            dots[indiceActual].classList.remove('active');
+
+            indiceActual = (indice + slides.length) % slides.length;
+
+            slides[indiceActual].classList.add('active');
+            dots[indiceActual].classList.add('active');
+        }
+
+        siguiente.addEventListener('click', () => {
+            mostrarImagen(indiceActual + 1);
+        });
+
+        anterior.addEventListener('click', () => {
+            mostrarImagen(indiceActual - 1);
+        });
+
+        dots.forEach((dot, indice) => {
+            dot.addEventListener('click', () => {
+                mostrarImagen(indice);
+            });
+        });
+
+        // Cambio automático cada 5 segundos
+        setInterval(() => {
+            mostrarImagen(indiceActual + 1);
+        }, 5000);
+    </script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+
+    const accesoUsuario = document.getElementById('acceso-usuario');
+
+    if (!accesoUsuario) return;
+
+    try {
+        const respuesta = await fetch('estado_sesion_usuario.php', {
+            cache: 'no-store',
+            credentials: 'same-origin'
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('No se pudo comprobar la sesión.');
+        }
+
+        const datos = await respuesta.json();
+
+        if (datos.sesion) {
+
+            accesoUsuario.href = 'perfil_usuario.php';
+            accesoUsuario.classList.add('nav-usuario-icono');
+            accesoUsuario.setAttribute('aria-label', 'Mi cuenta');
+            accesoUsuario.setAttribute('title', 'Mi cuenta');
+
+            accesoUsuario.innerHTML = `
+                <svg viewBox="0 0 24 24"
+                     width="21"
+                     height="21"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+                </svg>
+            `;
+
+        } else {
+
+            accesoUsuario.href = 'login_usuario.php';
+            accesoUsuario.classList.remove('nav-usuario-icono');
+            accesoUsuario.textContent = 'Login / Signup';
+        }
+
+    } catch (error) {
+        console.error('Error al comprobar la sesión:', error);
+    }
+
+});
+</script>
+</body>
+</html>
 
 </body>
 </html>

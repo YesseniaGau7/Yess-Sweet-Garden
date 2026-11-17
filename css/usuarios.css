@@ -1,0 +1,526 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff8f0;
+    color: #49352f;
+}
+
+.pagina-usuario {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 18px;
+    background:
+        radial-gradient(circle at 10% 15%, #f9e4e8 0, transparent 28%),
+        radial-gradient(circle at 90% 85%, #e8efd9 0, transparent 25%),
+        #fff8f0;
+}
+
+.tarjeta-usuario {
+    position: relative;
+    width: 100%;
+    max-width: 490px;
+    padding: 38px 42px;
+    background: #fff;
+    border: 1px solid #f0ded5;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(100, 60, 50, 0.07);
+}
+
+.volver-tienda {
+    display: inline-block;
+    color: #8b625c;
+    font-size: 13px;
+    text-decoration: none;
+    margin-bottom: 28px;
+}
+
+.volver-tienda:hover,
+.enlace-inicio:hover {
+    color: #b52d42;
+}
+
+.usuario-decoracion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #f9e3e7;
+    color: #b52d42;
+    font-size: 30px;
+}
+
+.usuario-sobretitulo {
+    text-align: center;
+    color: #b52d42;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.tarjeta-usuario h1 {
+    margin-top: 5px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: #50342f;
+}
+
+.usuario-descripcion {
+    max-width: 340px;
+    margin: 12px auto 20px;
+    text-align: center;
+    color: #8a716b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.usuario-separador {
+    height: 1px;
+    margin: 23px 0;
+    background: #f0ded5;
+}
+
+.tarjeta-usuario h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    color: #50342f;
+}
+
+.usuario-instruccion {
+    margin-top: 7px;
+    margin-bottom: 22px;
+    color: #927b74;
+    font-size: 13px;
+}
+
+.campo-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 19px;
+}
+
+.campo-usuario label {
+    color: #604842;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.campo-usuario input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #ead8ce;
+    border-radius: 10px;
+    outline: none;
+    background: #fffaf5;
+    color: #49352f;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.campo-usuario input:focus {
+    border-color: #b52d42;
+    box-shadow: 0 0 0 3px rgba(181, 45, 66, 0.09);
+}
+
+.campo-usuario input::placeholder {
+    color: #b49c93;
+}
+
+.campo-usuario small {
+    color: #9a8179;
+    font-size: 11px;
+}
+
+.btn-crear-cuenta {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    border: none;
+    border-radius: 11px;
+    background: #ae2d40;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-crear-cuenta:hover {
+    background: #902235;
+    transform: translateY(-2px);
+}
+
+.btn-crear-cuenta span {
+    margin-left: 6px;
+    font-size: 17px;
+}
+
+.mensaje {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.mensaje.error {
+    background: #fbe5e7;
+    color: #a52c3e;
+}
+
+.mensaje.exito {
+    background: #eaf1df;
+    color: #42633e;
+}
+
+.usuario-pie {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 24px;
+    font-size: 13px;
+}
+
+.usuario-pie p {
+    color: #8a716b;
+}
+
+.usuario-pie a {
+    color: #ae2d40;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.enlace-inicio {
+    display: block;
+    margin-top: 23px;
+    text-align: center;
+    color: #9b7b72;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+@media (max-width: 500px) {
+    .tarjeta-usuario {
+        padding: 30px 23px;
+    }
+
+    .tarjeta-usuario h1 {
+        font-size: 26px;
+    }
+}
+
+/* ICONO DE CUENTA EN EL MENU */
+
+.nav-usuario-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #ead8ce;
+    border-radius: 50%;
+    color: #ae2d40;
+    background: #fff8f1;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.nav-usuario-icono:hover {
+    color: #fff;
+    background: #ae2d40;
+    border-color: #ae2d40;
+}
+
+/* ACCESOS DEL PERFIL */
+
+.accesos-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.acceso-perfil {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+    border: 1px solid #f0ded5;
+    border-radius: 12px;
+    background: #fffaf5;
+    color: #604842;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.acceso-perfil:hover {
+    border-color: #c77b83;
+    background: #fff2ed;
+    transform: translateY(-2px);
+}
+
+.acceso-perfil > span {
+    color: #ae2d40;
+    font-size: 25px;
+}
+
+.acceso-perfil div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.acceso-perfil strong {
+    font-size: 14px;
+}
+
+.acceso-perfil small {
+    color: #927b74;
+    font-size: 12px;
+}
+
+/* ========================================
+   MIS COMPRAS
+======================================== */
+
+.pagina-compras {
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px 25px 55px;
+    background: transparent;
+}
+
+/* Botón regresar al perfil */
+
+.pagina-compras .volver-perfil {
+    margin-bottom: 30px;
+}
+
+.pagina-compras .volver-perfil a {
+    display: inline-block;
+    color: #ae2d40;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.pagina-compras .volver-perfil a:hover {
+    color: #902235;
+    transform: translateX(-3px);
+}
+
+/* Encabezado */
+
+.encabezado-compras {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.encabezado-compras h1 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.encabezado-compras p {
+    color: #8a716b;
+    font-size: 16px;
+}
+
+/* Tarjeta de cada compra */
+
+.tarjeta-compra {
+    background: #fff;
+    border: 1px solid #f0ded5;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(100, 60, 50, 0.04);
+}
+
+/* Información de la compra */
+
+.datos-compra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0ded5;
+}
+
+.datos-compra h2 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+}
+
+.datos-compra p {
+    color: #8a716b;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+/* Estado de compra */
+
+.estado-compra {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #eaf1df;
+    color: #536b40;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Productos comprados */
+
+.producto-comprado {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0ded5;
+}
+
+.producto-comprado:last-child {
+    border-bottom: none;
+}
+
+.producto-comprado img {
+    width: 115px;
+    height: 130px;
+    object-fit: contain;
+    padding: 5px;
+    background: #fffaf5;
+    border-radius: 12px;
+}
+
+.info-producto-comprado {
+    flex: 1;
+}
+
+.info-producto-comprado h3 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info-producto-comprado p {
+    color: #80645d;
+    font-size: 14px;
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+/* Total de la compra */
+
+.total-compra {
+    text-align: right;
+    padding-top: 20px;
+    color: #ae2d40;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* Cuando todavía no existen compras */
+
+.sin-compras {
+    padding: 55px 25px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #f0ded5;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(100, 60, 50, 0.04);
+}
+
+.sin-compras h2 {
+    color: #50342f;
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.sin-compras p {
+    color: #8a716b;
+    font-size: 14px;
+}
+
+.sin-compras a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: #ae2d40;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.sin-compras a:hover {
+    background: #902235;
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 600px) {
+
+    .pagina-compras {
+        padding: 25px 15px 40px;
+    }
+
+    .encabezado-compras h1 {
+        font-size: 29px;
+    }
+
+    .tarjeta-compra {
+        padding: 16px;
+    }
+
+    .producto-comprado {
+        gap: 12px;
+    }
+
+    .producto-comprado img {
+        width: 85px;
+        height: 105px;
+    }
+
+    .info-producto-comprado h3 {
+        font-size: 17px;
+    }
+
+    .info-producto-comprado p {
+        font-size: 12px;
+    }
+
+    .total-compra {
+        font-size: 20px;
+    }
+}

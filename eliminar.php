@@ -1,5 +1,8 @@
 
 <?php
+require_once __DIR__ . '/sesion.php';
+verificarSesion();
+
 require_once 'conexion.php';
 
 // Verificar que la solicitud sea POST

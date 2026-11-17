@@ -1,4 +1,8 @@
 
+<?php
+require_once __DIR__ . '/sesion.php';
+verificarSesion();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,7 +29,9 @@
                     <p>Panel de administración</p>
                 </div>
             </div>
-
+<a href="cerrar_sesion.php" class="btn-cerrar-sesion">
+    Cerrar sesión ↗
+</a>
             <span class="estado-panel">
                 <span class="estado-punto"></span>
                 Gestión de inventario
@@ -185,20 +191,76 @@
                         </div>
                     </div>
 
-                    <!-- TALLA -->
-                    <div class="campo">
-                        <label for="talla">Talla</label>
+<!-- TALLAS Y EXISTENCIAS -->
+<div class="campo campo-completo">
+    <label>Tallas disponibles y existencias *</label>
 
-                        <select id="talla" name="talla">
-                            <option value="">Selecciona una talla</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="Unitalla">Unitalla</option>
-                        </select>
-                    </div>
+    <p class="ayuda-tallas">
+        Selecciona las tallas que tendrá esta prenda e indica
+        cuántas unidades tienes disponibles de cada una.
+    </p>
+
+    <div class="tallas-grid">
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="XS">
+                XS
+            </label>
+            <input type="number" name="stock_tallas[XS]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="S">
+                S
+            </label>
+            <input type="number" name="stock_tallas[S]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="M">
+                M
+            </label>
+            <input type="number" name="stock_tallas[M]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="L">
+                L
+            </label>
+            <input type="number" name="stock_tallas[L]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="XL">
+                XL
+            </label>
+            <input type="number" name="stock_tallas[XL]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+        <div class="talla-item">
+            <label>
+                <input type="checkbox" name="tallas[]" value="Unitalla">
+                Unitalla
+            </label>
+            <input type="number" name="stock_tallas[Unitalla]"
+                   min="0" step="1" value="0" disabled>
+        </div>
+
+    </div>
+
+    <small>Selecciona al menos una talla. Puedes asignar 0 existencias si está agotada.</small>
+</div>
+
 
                     <!-- COLOR -->
                     <div class="campo">
@@ -213,20 +275,7 @@
                         >
                     </div>
 
-                    <!-- STOCK -->
-                    <div class="campo">
-                        <label for="stock">Cantidad disponible *</label>
-
-                        <input
-                            type="number"
-                            id="stock"
-                            name="stock"
-                            min="0"
-                            step="1"
-                            value="0"
-                            required
-                        >
-                    </div>
+                    
 
                     <!-- FOTOGRAFÍA -->
                     <div class="campo campo-completo">
@@ -287,6 +336,48 @@
         <span>✿ Yess Sweet Garden</span>
         <span>Panel interno de administración · 2026</span>
     </footer>
+
+<script>
+document.querySelectorAll('.talla-item').forEach(item => {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    const cantidad = item.querySelector('input[type="number"]');
+
+    checkbox.addEventListener('change', () => {
+        cantidad.disabled = !checkbox.checked;
+
+        if (!checkbox.checked) {
+            cantidad.value = 0;
+        }
+    });
+});
+
+// Evitar seleccionar Unitalla junto con otras tallas
+const opcionesTalla = document.querySelectorAll(
+    'input[name="tallas[]"]'
+);
+
+opcionesTalla.forEach(opcion => {
+    opcion.addEventListener('change', () => {
+        const unitalla = document.querySelector(
+            'input[name="tallas[]"][value="Unitalla"]'
+        );
+
+        if (opcion.value === 'Unitalla' && opcion.checked) {
+            opcionesTalla.forEach(otra => {
+                if (otra !== unitalla) {
+                    otra.checked = false;
+                    otra.dispatchEvent(new Event('change'));
+                }
+            });
+        } else if (opcion.checked && opcion.value !== 'Unitalla') {
+            unitalla.checked = false;
+            unitalla.dispatchEvent(new Event('change'));
+        }
+    });
+});
+</script>
+</body>
+</html>
 
 </body>
 </html>

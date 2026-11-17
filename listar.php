@@ -1,13 +1,36 @@
 
+
+
 <?php
+require_once __DIR__ . '/sesion.php';
+verificarSesion();
 require_once 'conexion.php';
 
 try {
     $consulta = $conexion->prepare(
-        "SELECT * FROM prendas ORDER BY id DESC"
-    );
-    $consulta->execute();
+        "SELECT
+            p.*,
+            COALESCE(t.total_stock, p.stock, 0) AS total_stock,
+            COALESCE(t.tallas_resumen, p.talla, '—') AS tallas_resumen
+        FROM prendas p
 
+        LEFT JOIN (
+            SELECT
+                prenda_id,
+                SUM(stock) AS total_stock,
+                GROUP_CONCAT(
+                    CONCAT(talla, ' (', stock, ')')
+                    ORDER BY FIELD(talla, 'XS', 'S', 'M', 'L', 'XL', 'Unitalla')
+                    SEPARATOR ', '
+                ) AS tallas_resumen
+            FROM prenda_tallas
+            GROUP BY prenda_id
+        ) t ON p.id = t.prenda_id
+
+        ORDER BY p.id DESC"
+    );
+
+    $consulta->execute();
     $prendas = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
@@ -28,12 +51,15 @@ $totalStock = 0;
 $stockBajo = 0;
 
 foreach ($prendas as $prenda) {
-    $stock = (int) $prenda['stock'];
+    $stock = (int) $prenda['total_stock'];
+    $temporada = (string) $prenda['temporada'];
+
     $totalStock += $stock;
 
     if ($stock <= 2) {
         $stockBajo++;
     }
+
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +79,7 @@ foreach ($prendas as $prenda) {
     <header class="admin-header">
         <div class="header-contenido">
 
-            <a href="index.html" class="marca">
+            <a href="index.php" class="marca">
                 <span class="marca-icono">✿</span>
 
                 <span>
@@ -61,8 +87,10 @@ foreach ($prendas as $prenda) {
                     <small>Panel de administración</small>
                 </span>
             </a>
-
-            <a href="index.html" class="btn-volver">
+<a href="cerrar_sesion.php" class="btn-cerrar-sesion">
+    Cerrar sesión ↗
+</a>
+            <a href="index.php" class="btn-volver">
                 ← Volver al panel
             </a>
 
@@ -151,7 +179,7 @@ foreach ($prendas as $prenda) {
                     <p>Consulta los detalles y administra cada registro.</p>
                 </div>
 
-                <a href="index.html" class="btn-agregar">
+                <a href="index.php" class="btn-agregar">
                     + Registrar prenda
                 </a>
             </div>
@@ -178,18 +206,19 @@ foreach ($prendas as $prenda) {
 
                         <tbody>
                             <?php foreach ($prendas as $prenda): ?>
-                                <?php
-                                    $stock = (int) $prenda['stock'];
-                                    $temporada = (string) $prenda['temporada'];
+    <?php
 
-                                    $claseTemporada = match ($temporada) {
-                                        'Primavera' => 'primavera',
-                                        'Verano' => 'verano',
-                                        'Otoño' => 'otono',
-                                        'Invierno' => 'invierno',
-                                        default => 'otra-temporada'
-                                    };
-                                ?>
+        $stock = (int) $prenda['total_stock'];
+        $temporada = (string) $prenda['temporada'];
+
+        $claseTemporada = match ($temporada) {
+            'Primavera' => 'primavera',
+            'Verano' => 'verano',
+            'Otoño' => 'otono',
+            'Invierno' => 'invierno',
+            default => 'otra-temporada'
+        };
+    ?>
 
                                 <tr>
                                     <td class="id-celda">
@@ -221,9 +250,9 @@ foreach ($prendas as $prenda) {
                                         </span>
                                     </td>
 
-                                    <td>
-                                        <?= escapar($prenda['talla']) ?: '—' ?>
-                                    </td>
+                                    <td class="tallas-celda">
+    <?= escapar($prenda['tallas_resumen']) ?: '—' ?>
+</td>
 
                                     <td>
                                         <?= escapar($prenda['color']) ?: '—' ?>
@@ -289,7 +318,7 @@ foreach ($prendas as $prenda) {
                     <h3>Tu inventario está esperando nuevas prendas</h3>
                     <p>Cuando registres una prenda, aparecerá aquí.</p>
 
-                    <a href="index.html" class="btn-agregar">
+                    <a href="index.php" class="btn-agregar">
                         Registrar primera prenda
                     </a>
                 </div>

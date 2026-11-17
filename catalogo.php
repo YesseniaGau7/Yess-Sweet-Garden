@@ -138,7 +138,36 @@ if ($temporadaSeleccionada === null) {
 } else {
     $tituloPagina = $temporadaSeleccionada;
 }
+
+/* Consultar las tallas disponibles de las prendas */
+$tallasPorPrenda = [];
+
+if (!empty($prendas)) {
+
+    $idsPrendas = array_column($prendas, 'id');
+
+    $marcadores = implode(',', array_fill(0, count($idsPrendas), '?'));
+
+    $sqlTallas = "SELECT prenda_id, talla, stock
+                  FROM prenda_tallas
+                  WHERE prenda_id IN ($marcadores)
+                  AND stock > 0
+                  ORDER BY FIELD(talla, 'XS', 'S', 'M', 'L', 'XL', 'Unitalla')";
+
+    $consultaTallas = $conexion->prepare($sqlTallas);
+    $consultaTallas->execute($idsPrendas);
+
+    $resultadosTallas = $consultaTallas->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($resultadosTallas as $fila) {
+        $tallasPorPrenda[$fila['prenda_id']][] = [
+            'talla' => $fila['talla'],
+            'stock' => (int) $fila['stock']
+        ];
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -189,6 +218,9 @@ if ($temporadaSeleccionada === null) {
 
             <a href="inicio.html#colecciones">Colecciones</a>
             <a href="inicio.html#nosotros">Nosotros</a>
+            <a href="login_usuario.php" class="nav-login" id="acceso-usuario">
+    Login / Signup
+</a>
 
         </nav>
 
@@ -446,8 +478,8 @@ if ($temporadaSeleccionada === null) {
 
                                     <?php
                                     $archivoImagen = trim(
-                                        (string) ($prenda['imagen'] ?? '')
-                                    );
+    (string) ($prenda['imagen_ruta'] ?? '')
+);
 
                                     $imagenValida =
                                         $archivoImagen !== '' &&
@@ -457,10 +489,47 @@ if ($temporadaSeleccionada === null) {
                                             $archivoImagen
                                         );
                                     ?>
+<?php
+$tallasDisponibles = $tallasPorPrenda[$prenda['id']] ?? [];
 
+$stockTotalDisponible = array_sum(
+    array_column($tallasDisponibles, 'stock')
+);
+?>
                                     <article class="tarjeta-prenda">
 
                                         <div class="foto-prenda">
+                                            <!-- ACCIONES DE LA PRENDA -->
+<div class="acciones-prenda">
+
+    <button
+        type="button"
+        class="btn-favorito"
+        aria-label="Agregar a favoritos"
+        title="Agregar a favoritos"
+        data-prenda-id="<?= (int)$prenda['id'] ?>"
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+        </svg>
+    </button>
+
+    <button
+        type="button"
+        class="btn-carrito"
+        aria-label="Agregar al carrito"
+        title="Agregar al carrito"
+        data-prenda-id="<?= (int)$prenda['id'] ?>"
+        <?= empty($tallasDisponibles) ? 'disabled' : '' ?>
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
+        </svg>
+    </button>
+
+</div>
 
                                             <?php if ($imagenValida): ?>
 
@@ -513,13 +582,48 @@ if ($temporadaSeleccionada === null) {
 
                                             <div class="detalles-prenda">
 
-                                                <span>
-                                                    Talla:
-                                                    <?= escapar(
-                                                        $prenda['talla']
-                                                        ?: 'No especificada'
-                                                    ) ?>
-                                                </span>
+                                               <div class="selector-talla-contenedor">
+
+    <label for="talla-<?= (int)$prenda['id'] ?>">
+        Selecciona tu talla:
+    </label>
+
+    <?php if (!empty($tallasDisponibles)): ?>
+
+        <select
+            class="selector-talla"
+            id="talla-<?= (int)$prenda['id'] ?>"
+            name="talla"
+            data-prenda-id="<?= (int)$prenda['id'] ?>"
+        >
+
+            <option value="" selected disabled>
+                Elige una talla
+            </option>
+
+            <?php foreach ($tallasDisponibles as $datoTalla): ?>
+
+                <option
+                    value="<?= escapar($datoTalla['talla']) ?>"
+                    data-stock="<?= (int)$datoTalla['stock'] ?>"
+                >
+                    <?= escapar($datoTalla['talla']) ?>
+                    — <?= (int)$datoTalla['stock'] ?> disponibles
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+
+    <?php else: ?>
+
+        <span class="sin-tallas">
+            Sin tallas disponibles
+        </span>
+
+    <?php endif; ?>
+
+</div>
 
                                                 <span>
                                                     Color:
@@ -542,8 +646,7 @@ if ($temporadaSeleccionada === null) {
                                                     <small>MXN</small>
                                                 </span>
 
-                                                <?php if ((int) $prenda['stock'] > 0): ?>
-
+<?php if ($stockTotalDisponible > 0): ?>
                                                     <span class="disponibilidad">
                                                         Disponible
                                                     </span>
@@ -607,6 +710,144 @@ if ($temporadaSeleccionada === null) {
         <small>© 2026 Yess Sweet Garden</small>
 
     </footer>
+<script>
+document.querySelectorAll('.btn-favorito').forEach(boton => {
+    boton.addEventListener('click', async () => {
+        const prendaId = boton.dataset.prendaId;
 
+        try {
+            const respuesta = await fetch('favorito_accion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    prenda_id: prendaId
+                })
+            });
+
+            const resultado = await respuesta.json();
+
+            if (respuesta.status === 401) {
+                window.location.href = 'login_usuario.php';
+                return;
+            }
+
+            if (!resultado.ok) {
+                alert(resultado.mensaje);
+                return;
+            }
+
+            boton.classList.toggle('activo', resultado.favorito);
+
+            boton.setAttribute(
+                'aria-label',
+                resultado.favorito
+                    ? 'Quitar de favoritos'
+                    : 'Agregar a favoritos'
+            );
+
+            boton.title = resultado.favorito
+                ? 'Quitar de favoritos'
+                : 'Agregar a favoritos';
+
+        } catch (error) {
+            alert('No fue posible actualizar tus favoritos. Inténtalo de nuevo.');
+        }
+    });
+});
+
+
+document.querySelectorAll('.btn-carrito').forEach(boton => {
+    boton.addEventListener('click', async () => {
+        const tarjeta = boton.closest('.tarjeta-prenda');
+        const selector = tarjeta.querySelector('.selector-talla');
+
+        if (!selector || !selector.value) {
+            alert('Primero selecciona una talla.');
+            if (selector) selector.focus();
+            return;
+        }
+
+        const prendaId = boton.dataset.prendaId;
+        const tallaSeleccionada = selector.value;
+
+        try {
+            boton.disabled = true;
+
+            const respuesta = await fetch('carrito_agregar.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    prenda_id: prendaId,
+                    talla: tallaSeleccionada
+                })
+            });
+
+            const resultado = await respuesta.json();
+
+            if (respuesta.status === 401) {
+                window.location.href = 'login_usuario.php';
+                return;
+            }
+
+            if (!resultado.ok) {
+                alert(resultado.mensaje);
+                return;
+            }
+
+            alert(resultado.mensaje);
+            window.location.href = resultado.redirigir;
+
+        } catch (error) {
+            alert('No fue posible agregar la prenda al carrito.');
+        } finally {
+            boton.disabled = false;
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const accesoUsuario = document.getElementById('acceso-usuario');
+
+    if (!accesoUsuario) return;
+
+    try {
+        const respuesta = await fetch('estado_sesion_usuario.php');
+        const datos = await respuesta.json();
+
+        if (datos.sesion) {
+            accesoUsuario.href = 'perfil_usuario.php';
+            accesoUsuario.classList.add('nav-usuario-icono');
+            accesoUsuario.setAttribute('aria-label', 'Mi cuenta');
+            accesoUsuario.title = 'Mi cuenta';
+
+            accesoUsuario.innerHTML = `
+                <svg viewBox="0 0 24 24"
+                     width="23"
+                     height="23"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M5 21a7 7 0 0 1 14 0"></path>
+                </svg>
+            `;
+        } else {
+            accesoUsuario.href = 'login_usuario.php';
+            accesoUsuario.textContent = 'Login / Signup';
+        }
+
+    } catch (error) {
+        console.error('No se pudo comprobar la sesión.');
+    }
+});
+</script>
 </body>
 </html>

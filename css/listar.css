@@ -581,3 +581,18 @@ tbody tr:last-child td {
         text-align: center;
     }
 }
+.btn-cerrar-sesion {
+    display: inline-block;
+    background-color: #a52d38;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-cerrar-sesion:hover {
+    background-color: #7f202b;
+    transform: translateY(-2px);
+}
